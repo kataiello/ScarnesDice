@@ -26,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        random = new Random();
+        whosTurn = Players.PLAYER;
+
+
         ((Button)findViewById(R.id.rollButton)).setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -59,19 +63,25 @@ public class MainActivity extends AppCompatActivity {
         //generate a random number between 1 and 6 inclusive
         int roll = rollDice();
         //show it in rollText
-        ((TextView) findViewById(R.id.rollText)).setText(roll);
+        ((TextView) findViewById(R.id.rollText)).setText(Integer.toString(roll));
+        //TODO implement with images instead of text
+        
+
+
+
         //if the roll is 1, automatically change players, don't add the score
         if(roll == 1)
         {
             changePlayers();
-            ((TextView) findViewById(R.id.rollText)).setText("0");
+            String lostRound = String.format("You rolled a 1! Your score was \n reset and the players switched. \n It is now %s's turn.", whosTurn.toString());
+            ((TextView) findViewById(R.id.turnScoreText)).setText(lostRound);
         }
         //else, add it to the score
         else
         {
             currentTurn += roll;
             //show it in turnScoreText
-            ((TextView) findViewById(R.id.turnScoreText)).setText(currentTurn);
+            ((TextView) findViewById(R.id.turnScoreText)).setText(Integer.toString(currentTurn));
         }
 
     }
@@ -106,6 +116,9 @@ public class MainActivity extends AppCompatActivity {
         return random.nextInt(6) + 1;
     }
 
+    /**
+     * Method to change between the two players
+     */
     private void changePlayers()
     {
         currentTurn = 0;
@@ -116,25 +129,37 @@ public class MainActivity extends AppCompatActivity {
         else
         {
             whosTurn = Players.COMPUTER;
+            //computerTurn();
         }
     }
 
+    /**
+     * Method to add to the player score
+     * @param turnTotal total score from the turn
+     */
     private void playerScores(int turnTotal)
     {
         //add the turn score to the total
         playerTotal += turnTotal;
         //update player1Score
-        ((TextView) findViewById(R.id.player1Score)).setText(playerTotal);
+        ((TextView) findViewById(R.id.player1Score)).setText(Integer.toString(playerTotal));
     }
 
+    /**
+     * Method to add to the computer score
+     * @param turnTotal total score from the turn
+     */
     private void computerScores(int turnTotal)
     {
         //add the turn score to the total
         computerTotal += turnTotal;
         //update player2Score
-        ((TextView) findViewById(R.id.player2Score)).setText(computerTotal);
+        ((TextView) findViewById(R.id.player2Score)).setText(Integer.toString(computerTotal));
     }
 
+    /**
+     * Reset all of the scores to 0
+     */
     private void resetScores()
     {
         currentTurn = 0;
@@ -142,5 +167,16 @@ public class MainActivity extends AppCompatActivity {
         computerTotal = 0;
     }
 
+    //TODO implement
+    private void computerTurn()
+    {
+        //TODO roll first
+        //TODO timer -- wait
+        while(whosTurn.equals(Players.COMPUTER))
+        {
+            //TODO each time randomly choose to roll or hold
+            //TODO timer -- wait
+        }
+    }
 
 }
