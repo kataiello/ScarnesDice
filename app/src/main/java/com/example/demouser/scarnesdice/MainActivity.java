@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.Random;
 
@@ -57,17 +58,20 @@ public class MainActivity extends AppCompatActivity {
     {
         //generate a random number between 1 and 6 inclusive
         int roll = rollDice();
-        //TODO: do something to show it in rollText
+        //show it in rollText
+        ((TextView) findViewById(R.id.rollText)).setText(roll);
         //if the roll is 1, automatically change players, don't add the score
         if(roll == 1)
         {
             changePlayers();
+            ((TextView) findViewById(R.id.rollText)).setText("0");
         }
         //else, add it to the score
         else
         {
             currentTurn += roll;
-            //TODO do something to show it in turnScoreText
+            //show it in turnScoreText
+            ((TextView) findViewById(R.id.turnScoreText)).setText(currentTurn);
         }
 
     }
@@ -92,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
     public void reset(View view)
     {
         resetScores();
+        ((TextView) findViewById(R.id.player1Score)).setText("0");
+        ((TextView) findViewById(R.id.player2Score)).setText("0");
+        ((TextView) findViewById(R.id.turnScoreText)).setText("0");
     }
 
     private int rollDice()
@@ -114,14 +121,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void playerScores(int turnTotal)
     {
+        //add the turn score to the total
         playerTotal += turnTotal;
-        //TODO update player1Score
+        //update player1Score
+        ((TextView) findViewById(R.id.player1Score)).setText(playerTotal);
     }
 
     private void computerScores(int turnTotal)
     {
+        //add the turn score to the total
         computerTotal += turnTotal;
-        //TODO update player2Score
+        //update player2Score
+        ((TextView) findViewById(R.id.player2Score)).setText(computerTotal);
     }
 
     private void resetScores()
