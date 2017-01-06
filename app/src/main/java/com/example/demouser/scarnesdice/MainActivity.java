@@ -3,6 +3,7 @@ package com.example.demouser.scarnesdice;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.Random;
 
@@ -23,6 +24,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ((Button)findViewById(R.id.rollButton)).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                roll(view);
+            }
+        });
+
+        ((Button)findViewById(R.id.holdButton)).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                hold(view);
+            }
+        });
+
+        ((Button)findViewById(R.id.resetButton)).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                reset(view);
+            }
+        });
     }
 
     public void roll(View view)

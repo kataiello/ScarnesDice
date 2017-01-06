@@ -145,21 +145,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/rollButton"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:onClick="roll (MainActivity)" />
 
             <Button
                 android:text="Hold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/holdButton"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:onClick="hold (MainActivity)" />
 
             <Button
                 android:text="Reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/resetButton"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:onClick="reset (MainActivity)" />
         </LinearLayout>
 
     </LinearLayout>
