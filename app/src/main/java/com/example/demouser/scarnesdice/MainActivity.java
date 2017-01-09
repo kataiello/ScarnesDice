@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        resetNoView();
 
         random = new Random();
         whosTurn = Players.PLAYER;
@@ -74,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
                 reset(view);
             }
         });
+
+
+        resetNoView();
     }
 
     public void roll(View view)
@@ -238,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
         double expect = roundNum * 3.5;
 
         //if we have averaged one more than the expectation each round, hold
-        if(currentTurn > expect + roundNum)
+        if(roundNum > 3 && currentTurn > expect + roundNum)
         {
             return true;
         }
