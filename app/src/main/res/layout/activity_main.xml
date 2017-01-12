@@ -147,7 +147,7 @@
             android:id="@+id/buttonsLayout">
 
             <Button
-                android:text="Roll"
+                android:text="@string/button_roll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/rollButton"
@@ -155,7 +155,7 @@
                 android:onClick="roll (MainActivity)" />
 
             <Button
-                android:text="Hold"
+                android:text="@string/button_hold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/holdButton"
@@ -163,7 +163,7 @@
                 android:onClick="hold (MainActivity)" />
 
             <Button
-                android:text="Reset"
+                android:text="@string/button_reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/resetButton"

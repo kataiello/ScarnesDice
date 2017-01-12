@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ScarnesDice</string>
+    <string name="button_roll">Roll</string>
+    <string name="button_hold">Hold</string>
+    <string name="button_reset">Reset</string>
+
+    <string name="change_players">Rolled a 1! Switched to %s\'s turn.</string>
+    <string name="turn_text">Players switched, it is now %s\'s turn.</string>
 </resources>

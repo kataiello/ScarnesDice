@@ -1,5 +1,6 @@
 package com.example.demouser.scarnesdice;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         whosTurn = Players.PLAYER;
 
         dieView = (ImageView) findViewById(R.id.dieView);
+        dieView.setContentDescription("one face to start");
         playerScoreText = (TextView) findViewById(R.id.player1Score);
         computerScoreText = (TextView) findViewById(R.id.player2Score);
         turnScoreText = (TextView) findViewById(R.id.turnScoreText);
@@ -93,16 +95,22 @@ public class MainActivity extends AppCompatActivity {
         switch(roll)
         {
             case 1: dieView.setImageResource(R.drawable.dice1);
+                    dieView.setContentDescription("one face");
                 break;
             case 2: dieView.setImageResource(R.drawable.dice2);
+                dieView.setContentDescription("two face");
                 break;
             case 3: dieView.setImageResource(R.drawable.dice3);
+                    dieView.setContentDescription("three face");
                 break;
             case 4: dieView.setImageResource(R.drawable.dice4);
+                dieView.setContentDescription("four face");
                 break;
             case 5: dieView.setImageResource(R.drawable.dice5);
+                dieView.setContentDescription("five face");
                 break;
             case 6: dieView.setImageResource(R.drawable.dice6);
+                    dieView.setContentDescription("six face");
                 break;
         }
 
@@ -111,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         if(roll == 1)
         {
             changePlayers();
-            String lostRound = String.format("You rolled a 1! Your score was \n reset and the players switched. \n It is now %s's turn.", whosTurn.toString());
+            String lostRound = String.format(getString(R.string.change_players), whosTurn.toString());
             turnScoreText.setText(lostRound);
         }
         //else, add it to the score
@@ -168,6 +176,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private void changePlayers()
     {
+        checkWin();
+        
         currentTurn = 0;
         if(whosTurn.equals(Players.COMPUTER))
         {
@@ -180,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
             computerTurnIn500();
         }
 
-        String turnText = String.format("Players switched, it is now %s's turn.", whosTurn.toString());
+        String turnText = String.format(getString(R.string.turn_text), whosTurn.toString());
         turnScoreText.setText(turnText);
 
     }
@@ -274,6 +284,31 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }, 500);
+    }
+
+    private void checkWin()
+    {
+        if(playerTotal >= 50)
+        {
+            playerWins();
+        }
+        else if(computerTotal >= 50)
+        {
+            computerWins();
+        }
+    }
+
+    private void computerWins()
+    {
+        startActivity(new Intent(this, LoseActivity.class));
+        resetNoView();
+    }
+
+    private void playerWins()
+    {
+        Intent intent = new Intent(this, WinActivity.class);
+        startActivity(intent);
+        resetNoView();
     }
 
 }
