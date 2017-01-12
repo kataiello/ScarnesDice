@@ -24,8 +24,16 @@
         android:text="Play again"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="73dp"
+        android:id="@+id/playAgainButton"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:id="@+id/playAgainButton" />
+        android:layout_marginTop="26dp"
+        android:id="@+id/score" />
 </RelativeLayout>

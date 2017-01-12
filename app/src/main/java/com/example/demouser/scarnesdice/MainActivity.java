@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
     private void changePlayers()
     {
         checkWin();
-        
+
         currentTurn = 0;
         if(whosTurn.equals(Players.COMPUTER))
         {
@@ -298,15 +298,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public static final String USER_SCORE = "com.demoUser.ScarnesDice.USER_SCORE";
     private void computerWins()
     {
-        startActivity(new Intent(this, LoseActivity.class));
+        Intent intent = new Intent(this, LoseActivity.class);
+        intent.putExtra(USER_SCORE, String.valueOf(playerTotal));
+        startActivity(intent);
         resetNoView();
     }
+
 
     private void playerWins()
     {
         Intent intent = new Intent(this, WinActivity.class);
+        intent.putExtra(USER_SCORE, String.valueOf(playerTotal));
         startActivity(intent);
         resetNoView();
     }
